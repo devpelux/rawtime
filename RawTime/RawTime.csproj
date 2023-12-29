@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0; net7.0; net6.0</TargetFrameworks>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Authors>devpelux</Authors>
+    <Description>This package contains a class named RawTime that manages time in a raw format independently from timezones or other parameters.</Description>
+    <PackageTags>time raw format timezone independent net core</PackageTags>
+    <PackageReleaseNotes>First release candidate.</PackageReleaseNotes>
+    <PackageProjectUrl>https://www.nuget.org/packages/RawTime</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/devpelux/rawtime</RepositoryUrl>
+    <Copyright>Copyright (C) 2023-2024 devpelux (Salvatore Peluso)</Copyright>
+    <RepositoryType>git</RepositoryType>
+    <PackageIcon>Icon.png</PackageIcon>
+    <Version>1.0.0-rc.1</Version>
+    <Nullable>enable</Nullable>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <SignAssembly>False</SignAssembly>
+    <PackageReadmeFile>NUGET_README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+	  <PackagePath>\</PackagePath>
+	</None>
+    <None Include="..\Assets\NUGET_README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+	<None Include="Resources\Icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
