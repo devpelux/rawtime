@@ -5,7 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace RawTimeCore
 {
     /// <summary>
-    /// Manages raw time rappresentation independently from the time zone.
+    /// Manages time in a raw format independently from timezones or other parameters.
     /// </summary>
     public class RawTime : IEquatable<RawTime?>
     {
