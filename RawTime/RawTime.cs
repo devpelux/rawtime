@@ -243,23 +243,28 @@ namespace RawTimeCore
         {
             roundingInterval = Math.Min(Math.Max(roundingInterval, 1), 60);
             int minute = Minute;
-            int roundedMinute;
-            switch (roundingType)
+            int roundedMinute = Minute;
+
+            if (minute % roundingInterval != 0)
             {
-                case RoundingType.Math:
-                    roundedMinute = minute + roundingInterval / 2;
-                    roundedMinute -= (roundedMinute % roundingInterval);
-                    break;
-                case RoundingType.Floor:
-                    roundedMinute = minute - (minute % roundingInterval);
-                    break;
-                case RoundingType.Ceiling:
-                    roundedMinute = minute + (roundingInterval - (minute % roundingInterval));
-                    break;
-                default:
-                    roundedMinute = minute;
-                    break;
+                switch (roundingType)
+                {
+                    case RoundingType.Math:
+                        roundedMinute = minute + roundingInterval / 2;
+                        roundedMinute -= (roundedMinute % roundingInterval);
+                        break;
+                    case RoundingType.Floor:
+                        roundedMinute = minute - (minute % roundingInterval);
+                        break;
+                    case RoundingType.Ceiling:
+                        roundedMinute = minute + (roundingInterval - (minute % roundingInterval));
+                        break;
+                    default:
+                        roundedMinute = minute;
+                        break;
+                }
             }
+            
             return AddMinutes(roundedMinute - minute);
         }
 
