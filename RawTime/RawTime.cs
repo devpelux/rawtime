@@ -190,7 +190,7 @@ namespace RawTimeCore
 
         #endregion Converting from and to DateTime
 
-        #region Truncations
+        #region Truncations and rounding
 
         /// <summary>
         /// Gets a new instance truncated to the day.
@@ -211,6 +211,59 @@ namespace RawTimeCore
         /// Gets a new instance with only hour and minute. (Date will be 1/Jan/1)
         /// </summary>
         public RawTime TimeOfDayMinutes() => new(1, 1, 1, Hour, Minute, 0, 0);
+
+        #region Rounding
+
+        /// <summary>
+        /// Tipo di arrotondamento.
+        /// </summary>
+        public enum RoundingType
+        {
+            /// <summary>
+            /// Mathematical rounding.
+            /// </summary>
+            Math,
+
+            /// <summary>
+            /// Floor rounding.
+            /// </summary>
+            Floor,
+
+            /// <summary>
+            /// Ceiling rounding.
+            /// </summary>
+            Ceiling,
+        };
+
+        /// <summary>
+        /// Gets a new instance rounded at the minute using the specified interval in minutes and rounding type.
+        /// The interval will be clamped between 1 and 60 minutes.
+        /// </summary>
+        public RawTime RoundMinute(int roundingInterval, RoundingType roundingType)
+        {
+            roundingInterval = Math.Min(Math.Max(roundingInterval, 1), 60);
+            int minute = Minute;
+            int roundedMinute;
+            switch (roundingType)
+            {
+                case RoundingType.Math:
+                    roundedMinute = minute + roundingInterval / 2;
+                    roundedMinute -= (roundedMinute % roundingInterval);
+                    break;
+                case RoundingType.Floor:
+                    roundedMinute = minute - (minute % roundingInterval);
+                    break;
+                case RoundingType.Ceiling:
+                    roundedMinute = minute + (roundingInterval - (minute % roundingInterval));
+                    break;
+                default:
+                    roundedMinute = minute;
+                    break;
+            }
+            return AddMinutes(roundedMinute - minute);
+        }
+
+        #endregion
 
         #endregion Truncations
 
